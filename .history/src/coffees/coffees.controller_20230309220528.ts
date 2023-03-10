@@ -1,6 +1,5 @@
 import { CoffeesService } from './coffees.service';
-import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto'';
 import {
   Controller, //"nest g co" in terminal
   Get,
@@ -27,9 +26,8 @@ export class CoffeesController {
     return this.CoffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    console.log(typeof id);
-    return this.CoffeesService.findOne('' + id);
+  findOne(@Param('id') id: string) {
+    return this.CoffeesService.findOne(id);
   }
   //Reading
   // @Get(':id') //":id" signifies a dynamic route parameter named id
@@ -43,7 +41,6 @@ export class CoffeesController {
   // @HttpCode(HttpStatus.GONE)
   // Can run into validation issues when accessing only portions of Body. Cannot validate other properties when accessing a specific property
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
-    console.log(createCoffeeDto instanceof CreateCoffeeDto);
     return this.CoffeesService.create(createCoffeeDto);
   }
   //Update - Put replaces entire resource - entire object must be in request payload /&/ Patch - only partially modifies resource

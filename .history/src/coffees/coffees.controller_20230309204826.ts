@@ -1,6 +1,4 @@
 import { CoffeesService } from './coffees.service';
-import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import {
   Controller, //"nest g co" in terminal
   Get,
@@ -14,6 +12,7 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { Coffee } from './entities/coffee.entity';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -23,13 +22,8 @@ export class CoffeesController {
   @Get()
   findAll(@Query() paginationQuery) {
     // response.status(200).send('This action returns all the coffees');
-    // const { limit, offset } = paginationQuery;
-    return this.CoffeesService.findAll();
-  }
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    console.log(typeof id);
-    return this.CoffeesService.findOne('' + id);
+    const { limit, offset } = paginationQuery;
+    return `This action returns all coffees. Limit: ${limit}, offset: ${offset}`;
   }
   //Reading
   // @Get(':id') //":id" signifies a dynamic route parameter named id
@@ -42,18 +36,17 @@ export class CoffeesController {
   //
   // @HttpCode(HttpStatus.GONE)
   // Can run into validation issues when accessing only portions of Body. Cannot validate other properties when accessing a specific property
-  create(@Body() createCoffeeDto: CreateCoffeeDto) {
-    console.log(createCoffeeDto instanceof CreateCoffeeDto);
-    return this.CoffeesService.create(createCoffeeDto);
+  create(@Body() body) {
+    return body;
   }
   //Update - Put replaces entire resource - entire object must be in request payload /&/ Patch - only partially modifies resource
   @Patch(':id')
-  update(@Param('id') id: string, @Body() UpdateCoffeeDto: UpdateCoffeeDto) {
-    return this.CoffeesService.update(id, UpdateCoffeeDto);
+  update(@Param('id') id: string, @Body() body) {
+    return `This action updates #${id} coffee`;
   }
   //Delete
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.CoffeesService.remove(id);
+    return `This action removes #${id} coffee`;
   }
 }

@@ -27,9 +27,8 @@ export class CoffeesController {
     return this.CoffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    console.log(typeof id);
-    return this.CoffeesService.findOne('' + id);
+  findOne(@Param('id') id: string) {
+    return this.CoffeesService.findOne(id);
   }
   //Reading
   // @Get(':id') //":id" signifies a dynamic route parameter named id
