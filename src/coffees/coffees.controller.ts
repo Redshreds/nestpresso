@@ -23,8 +23,9 @@ export class CoffeesController {
   @Get()
   findAll(@Query() paginationQuery) {
     // response.status(200).send('This action returns all the coffees');
-    // const { limit, offset } = paginationQuery;
-    return this.CoffeesService.findAll();
+    const { limit, offset } = paginationQuery;
+    // return this.CoffeesService.findAll();
+    // return `This action returns all coffees. Limit: ${limit}, offset: ${offset}`;
   }
   @Get(':id')
   findOne(@Param('id') id: number) {
@@ -37,9 +38,8 @@ export class CoffeesController {
   //   return `This action returns #${id} coffee`;
   // }
 
-  // To get all or portions of a request body / Creating
+  // Body to get all or portions of a request body / Creating
   @Post()
-  //
   // @HttpCode(HttpStatus.GONE)
   // Can run into validation issues when accessing only portions of Body. Cannot validate other properties when accessing a specific property
   create(@Body() createCoffeeDto: CreateCoffeeDto) {

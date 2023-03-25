@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 
-//Services are Providors - main purpose is to inject dependencies. Responisble for data storage and retrieval.
+//Services are Providors - main purpose is to inject dependencies. Responisble for data storage and retrieval. Providers are just class annotated with Injecable decorator.
 @Injectable()
 export class CoffeesService {
   private coffees: Coffee[] = [

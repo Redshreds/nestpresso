@@ -9,5 +9,9 @@ import { CoffeesService } from './coffees.service';
 //Imports - other modules that this maodule requires
 //Providers - Services that need to be instantiated by the Nest Injector
 
-@Module({ controllers: [CoffeesController], providers: [CoffeesService] })
+@Module({
+  imports: [CoffeesModule],
+  controllers: [CoffeesController],
+  providers: [CoffeesService],
+})
 export class CoffeesModule {}
